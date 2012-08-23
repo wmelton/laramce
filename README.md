@@ -81,7 +81,7 @@ RTE::rich_text_box(array(
                         'advanced_resizing'=>'true/false')
 </pre>
 
-Current TinyMCE version is 3.5.6.
-TinyMCE Homepage: http://www.tinymce.com/
+Current TinyMCE version is 3.5.6<br/>
+TinyMCE Homepage: http://www.tinymce.com/<br/>
 TinyMCE Documentation: http://www.tinymce.com/wiki.php
 
