@@ -195,6 +195,10 @@ class RTE
 			$attributes['class']=$config['selector'];
 		}
 
+		if ( ! isset($attributes['rows'])) $attributes['rows'] = 10;
+
+		if ( ! isset($attributes['cols'])) $attributes['cols'] = 50;
+
 		if($mode == 'full')
 		{
 			$script = static::full_setup($config['selector'], $setup);
