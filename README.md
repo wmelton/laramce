@@ -1,6 +1,8 @@
 ##LaraMCE Bundle, by Charl Gottschalk
 LaraMCE allows you to generate rich text boxes based on TinyMCE for the excellent [Laravel](http://laravel.com/ "Laravel") PHP framework
 
+*Update: Now supports all TinyMCE configuration settings*
+
 ######1. Install using Artisan CLI:
 
 <pre>php artisan bundle:install laramce</pre>
@@ -39,47 +41,32 @@ RTE::rich_text_box(array(
 
 ######LaraMCE settings:
 
-<pre>
-<i>Available in all modes | Required</i>
-'id'        =>   'id of the control',
+*Required*
+<pre>'id'        =>   'id of the control',</pre>
 
-<i>Available in all modes | Required</i>
-'name'      =>   'name of the control',
+*Required*
+<pre>'name'      =>   'name of the control',</pre>
 
-<i>Available in all modes | Required</i>
-'selector'  =>   'a unique name that TinyMCE will use to select the textarea',
+*Required*
+<pre>'selector'  =>   'a unique name that TinyMCE will use to select the textarea',</pre>
 
-<i>Required</i>
-'mode'      =>   'full/simple/custom',
+*Required*
+<pre>'mode'      =>   'full/simple/custom',</pre>
 
-<i>Available in all modes</i>
-'style'     =>   'standard css',
+*Optional*
+<pre>'style'     =>   'standard css',</pre>
 
-<i>Available in all modes</i>
-'rows'      =>   '5',
+*Optional*
+<pre>'rows'      =>   '5',</pre>
 
-<i>Available in all modes</i>
-'cols'      =>   '80',
-
-<i>Only available in 'full' and 'custom' modes</i>
-'plugins'   =>   'refer to TinyMCE documentation for plugins',
-
-<i>Only available in 'full' and 'custom' modes</i>
-'buttons'   =>   array( 'buttons1'=>'Refer to TinyMCE documentation for buttons',
-                        'buttons2'=>'Refer to TinyMCE documentation for buttons',
-                        'buttons3'=>'Refer to TinyMCE documentation for buttons',
-                        'buttons4'=>'Refer to TinyMCE documentation for buttons',),
+*Optional*
+<pre>'cols'      =>   '80',</pre>
                         
-<i>All except for 'skin' and 'skin_variant', available in 'full' and 'custom' modes only</i>                        
-'setup'     =>   array( 'skin'=>'o2k7',
-                        'skin_variant'=>'silver/black',
-                        'toolbar_location'=>'top/bottom/external',
-                        'toolbar_align'=>'left/right/center',
-                        'statusbar_location'=>'top/bottom/none',
-                        'advanced_resizing'=>'true/false')
-</pre>
+*Refer to TinyMCE configuration documentation for correct setting names and values* - http://www.tinymce.com/wiki.php/Configuration                     
+<pre>'setup'     =>   array( 'TinyMCE Setting'=>'Value', 'Another TinyMCE Setting'=>'Value')</pre>
 
 Current TinyMCE version is 3.5.6<br/>
 TinyMCE Homepage: http://www.tinymce.com/<br/>
 TinyMCE Documentation: http://www.tinymce.com/wiki.php
+TinyMCE Configuration Wiki: http://www.tinymce.com/wiki.php/Configuration
 
