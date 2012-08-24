@@ -19,7 +19,7 @@ LaraMCE allows you to generate rich text boxes based on TinyMCE for the excellen
 
 ######5. Add the following to your template view file to include the TinyMCE Javascript:
 
-<pre>Asset::container('laramce')->styles();</pre>
+<pre>Asset::container('laramce')->scripts();</pre>
 
 ######To create a rich text box:
 _for the mode setting, use 'simple' to create a simple editor, 'full' to create an editor with all options enabled and 'custom' to create an editor with your own settings_
