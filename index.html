@@ -10,7 +10,7 @@
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <title>LaraMCE by CharlGottschalk</title>
+    <title>Laramce by CharlGottschalk</title>
   </head>
 
   <body>
@@ -18,7 +18,7 @@
       <div class="inner">
 
         <header>
-          <h1>LaraMCE</h1>
+          <h1>Laramce</h1>
           <h2>A Laravel bundle to provide the TinyMCE editor.</h2>
         </header>
 
@@ -31,93 +31,99 @@
         <hr>
 
         <section id="main_content">
-          <h1>LaraMCE Bundle, by Charl Gottschalk</h1>
+          <h2>LaraMCE Bundle, by Charl Gottschalk</h2>
 
-<p>LaraMCE allows you to generate rich text boxes based on TinyMCE</p>
+<p>LaraMCE allows you to generate rich text boxes based on TinyMCE for the excellent <a href="http://laravel.com/" title="Laravel">Laravel</a> PHP framework</p>
 
-<p><strong>Install using Artisan CLI:</strong></p>
+<p><em>Update: Now supports all TinyMCE configuration settings</em></p>
+
+<h6>1. Install using Artisan CLI:</h6>
 
 <pre>php artisan bundle:install laramce</pre>
 
-<p><strong>Add the following line to application/bundles.php file:</strong></p>
+<h6>2. Add the following line to application/bundles.php file:</h6>
 
-<pre>return array(
-    'laramce' =&gt; array('auto' =&gt; true),
-);</pre>
+<pre>return array('laramce' =&gt; array('auto' =&gt; true),);</pre>
 
-<strong>Add the following to the application.php config file in the 'aliases' array:</strong>
+<h6>3. Add the following to the application.php config file in the 'aliases' array:</h6>
 
 <pre>'RTE'                 =&gt; 'Laramce\\rte',</pre>
 
-<strong>Publish the bundle assets to your public folder.</strong>
+<h6>4. Publish the bundle assets to your public folder:</h6>
 
 <pre>php artisan bundle:publish</pre>
 
-<strong>Add the following to your template view file to include the TinyMCE Javascript.</strong>
+<h6>5. Add the following to your template view file to include the TinyMCE Javascript:</h6>
 
-<pre>Asset::container('laramce')-&gt;styles();</pre>
+<pre>Asset::container('laramce')-&gt;scripts();</pre>
 
-<strong>To create a rich text box:</strong>
-for the mode setting, use 'simple' to create a simple editor, 'full' to create an editor with all options enabled and 'custom' to create an editor with your own settings.
+<h6>To create a rich text box:</h6>
+
+<p><em>For the mode setting, use 'simple' to create a simple editor, 'full' to create an editor with all options enabled and 'custom' to create an editor with your own settings</em></p>
 
 <pre>
-RTE::rich_text_box(array(
-                    'id'=&gt;'rt1',
-                    'name'=&gt;'rt1',
-                    'selector'=&gt;'rich1',
-                    'mode'=&gt;'full',
-                    'setup'=&gt;array(
-                        'skin'=&gt;'o2k7',
-                        'skin_variant'=&gt;'black'
-                        )
-                    ))
+RTE::rich_text_box(array('id'=&gt;'rt1',
+             'name'=&gt;'rt1',
+             'selector'=&gt;'rich1',
+             'mode'=&gt;'full',
+             'setup'=&gt;array(
+                'skin'=&gt;'o2k7',
+                'skin_variant'=&gt;'black')
+            ))
 </pre>
 
-<p><strong>LaraMCE settings:</strong></p>
+<h6>To create initialization script:</h6>
+
+<p><em>Use this method if you want to create multiple editors on a single page or generate the script where you want.</em><br><em>When using this function, you can create normal textareas using Laravel's form builder, just remember to add the same selector id for the script as a class attribute to the textarea.</em></p>
 
 <pre>
-<i>Available in all modes | Required</i>
-'id'        =&gt;   'id of the control',
+RTE::initialize_script(array('selector'=&gt;'rich1',
+                 'mode'=&gt;'full',
+                 'setup'=&gt;array(
+                     'skin'=&gt;'o2k7',
+                     'skin_variant'=&gt;'black')           
+                 ))
+</pre>
 
-<i>Available in all modes | Required</i>
-'name'      =&gt;   'name of the control',
+<h6>LaraMCE settings:</h6>
 
-<i>Available in all modes | Required</i>
-'selector'  =&gt;   'a unique name that TinyMCE will use to select the textarea',
+<p><em>Required</em></p>
 
-<i>Required</i>
-'mode'      =&gt;   'full/simple/custom',
+<pre>'id'        =&gt;   'id of the control',</pre>
 
-<i>Available in all modes</i>
-'style'     =&gt;   'standard css',
+<p><em>Required</em></p>
 
-<i>Available in all modes</i>
-'rows'      =&gt;   '5',
+<pre>'name'      =&gt;   'name of the control',</pre>
 
-<i>Available in all modes</i>
-'cols'      =&gt;   '80',
+<p><em>Required</em></p>
 
-<i>Only available in 'full' and 'custom' modes</i>
-'plugins'   =&gt;   'refer to TinyMCE documentation for plugins',
+<pre>'selector'  =&gt;   'a unique name that TinyMCE will use to select the textarea',</pre>
 
-<i>Only available in 'full' and 'custom' modes</i>
-'buttons'   =&gt;   array( 'buttons1'=&gt;'Refer to TinyMCE documentation for buttons',
-                        'buttons2'=&gt;'Refer to TinyMCE documentation for buttons',
-                        'buttons3'=&gt;'Refer to TinyMCE documentation for buttons',
-                        'buttons4'=&gt;'Refer to TinyMCE documentation for buttons',),
+<p><em>Required</em></p>
+
+<pre>'mode'      =&gt;   'full/simple/custom',</pre>
+
+<p><em>Optional</em></p>
+
+<pre>'style'     =&gt;   'standard css',</pre>
+
+<p><em>Optional</em></p>
+
+<pre>'rows'      =&gt;   '5',</pre>
+
+<p><em>Optional</em></p>
+
+<pre>'cols'      =&gt;   '80',</pre>
                         
-<i>All except for 'skin' and 'skin_variant', available in 'full' and 'custom' modes only</i>                        
-'setup'     =&gt;   array( 'skin'=&gt;'o2k7',
-                        'skin_variant'=&gt;'silver/black',
-                        'toolbar_location'=&gt;'top/bottom/external',
-                        'toolbar_align'=&gt;'left/right/center',
-                        'statusbar_location'=&gt;'top/bottom/none',
-                        'advanced_resizing'=&gt;'true/false')
-</pre>
+
+<p><em>Refer to TinyMCE configuration documentation for correct setting names and values</em> - <a href="http://www.tinymce.com/wiki.php/Configuration">http://www.tinymce.com/wiki.php/Configuration</a>                     </p>
+
+<pre>'setup'     =&gt;   array( 'TinyMCE Setting'=&gt;'Value', 'Another TinyMCE Setting'=&gt;'Value')</pre>
 
 <p>Current TinyMCE version is 3.5.6<br>
 TinyMCE Homepage: <a href="http://www.tinymce.com/">http://www.tinymce.com/</a><br>
-TinyMCE Documentation: <a href="http://www.tinymce.com/wiki.php">http://www.tinymce.com/wiki.php</a></p>
+TinyMCE Documentation: <a href="http://www.tinymce.com/wiki.php">http://www.tinymce.com/wiki.php</a><br>
+TinyMCE Configuration Wiki: <a href="http://www.tinymce.com/wiki.php/Configuration">http://www.tinymce.com/wiki.php/Configuration</a></p>
         </section>
 
         <footer>
