@@ -27,16 +27,14 @@ LaraMCE allows you to generate rich text boxes based on TinyMCE for the excellen
 _For the mode setting, use 'simple' to create a simple editor, 'full' to create an editor with all options enabled and 'custom' to create an editor with your own settings_
 
 <pre>
-RTE::rich_text_box(array(
-					'id'=>'rt1',
-					'name'=>'rt1',
-					'selector'=>'rich1',
-					'mode'=>'full',
-					'setup'=>array(
-						'skin'=>'o2k7',
-						'skin_variant'=>'black'
-						)
-					))
+RTE::rich_text_box(array('id'=>'rt1',
+			 'name'=>'rt1',
+			 'selector'=>'rich1',
+			 'mode'=>'full',
+			 'setup'=>array(
+			    'skin'=>'o2k7',
+			    'skin_variant'=>'black')
+			))
 </pre>
 
 ######To create initialization script:
@@ -44,16 +42,12 @@ _Use this method if you want to create multiple editors on a single page or gene
 _When using this function, you can create normal textareas using Laravel's form builder, just remember to add the same selector id for the script as a class attribute to the textarea._
 
 <pre>
-RTE::initialize_script(array(
-					'id'=>'rt1',
-					'name'=>'rt1',
-					'selector'=>'rich1',
-					'mode'=>'full',
-					'setup'=>array(
-						'skin'=>'o2k7',
-						'skin_variant'=>'black'
-						)
-					))
+RTE::initialize_script(array('selector'=>'rich1',
+			     'mode'=>'full',
+			     'setup'=>array(
+			         'skin'=>'o2k7',
+			         'skin_variant'=>'black')			
+			     ))
 </pre>
 
 ######LaraMCE settings:
