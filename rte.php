@@ -27,7 +27,16 @@ class RTE
 	 */
 	protected static function start_script($textarea_selector_id)
 	{
-		return '<script type="text/javascript">tinyMCE.init({editor_selector : "'.$textarea_selector_id.'"';
+		if(!empty($textarea_selector_id))
+		{
+			$selector = 'editor_selector : "'.$textarea_selector_id.'"';
+		}
+		else
+		{
+			$selector='';
+		}
+
+		return '<script type="text/javascript">tinyMCE.init({'.$selector;
 	}
 
 	/**
@@ -152,14 +161,39 @@ class RTE
 	 * @param  string     $config	 	 
 	 * @return string     RTE HTML
 	 */
-	public static function rich_text_box($config = array())
+	public static function rich_text_box($name, $value = '',$config = array())
 	{
-		$class 		= array_key_exists('class', $config)? $config['class'] : '';
-		$style 		= array_key_exists('style', $config)? $config['style'] : '';
-		$rows		= array_key_exists('rows', $config)? $config['rows'] : '5';
-		$cols 		= array_key_exists('cols', $config)? $config['cols'] : '80';
 		$mode 		= array_key_exists('mode', $config) ? $config['mode'] : 'full';
 		$setup 		= array_key_exists('setup', $config) ? $config['setup'] : array();
+		$attributes = array_key_exists('att', $config) ? $config['att'] : array();
+
+		if(!isset($attributes['name']))
+		{
+			$attributes['name']=$name;
+		}
+		else
+		{
+			$name=$attributes['name'];
+		}
+
+		if(!isset($config['selector']))
+		{
+			$config['selector']=static::random(6);
+		}
+
+		if(!isset($attributes['id']))
+		{
+			$attributes['id']=$name.static::random(6);
+		}
+
+		if(isset($attributes['class']))
+		{
+			$attributes['class']=$attributes['class'].' '.$config['selector'];
+		}
+		else
+		{
+			$attributes['class']=$config['selector'];
+		}
 
 		if($mode == 'full')
 		{
@@ -172,7 +206,48 @@ class RTE
 		{
 			$script = static::custom_setup($config['selector'], $setup);
 		}
-		$html = $script.' <textarea id="'.$config['id'].'" name="'.$config['name'].'" class="'.$config['selector'].''.$class.'" rows="'.$rows.'" cols="'.$cols.'" style="'.$style.'"></textarea>';
+		$html = $script.' <textarea '.HTML::attributes($attributes).'>'.$value.'</textarea>';
 		return $html;
+	}
+
+	/**
+	 * Generate a random alpha or alpha-numeric string.
+	 *
+	 * <code>
+	 *		// Generate a 40 character random alpha-numeric string
+	 *		echo Str::random(40);
+	 *
+	 *		// Generate a 16 character random alphabetic string
+	 *		echo Str::random(16, 'alpha');
+	 * <code>
+	 *
+	 * @param  int	   $length
+	 * @param  string  $type
+	 * @return string
+	 */
+	protected static function random($length, $type = 'alnum')
+	{
+		return substr(str_shuffle(str_repeat(static::pool($type), 5)), 0, $length);
+	}
+
+	/**
+	 * Get the character pool for a given type of random string.
+	 *
+	 * @param  string  $type
+	 * @return string
+	 */
+	protected static function pool($type)
+	{
+		switch ($type)
+		{
+			case 'alpha':
+				return 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+			case 'alnum':
+				return '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+			default:
+				throw new \Exception("Invalid random string type [$type].");
+		}
 	}
 }
