@@ -27,14 +27,15 @@ LaraMCE allows you to generate rich text boxes based on TinyMCE for the excellen
 _For the mode setting, use 'simple' to create a simple editor, 'full' to create an editor with all options enabled and 'custom' to create an editor with your own settings_
 
 <pre>
-RTE::rich_text_box(array('id'=>'rt1',
-			 'name'=>'rt1',
-			 'selector'=>'rich1',
-			 'mode'=>'full',
-			 'setup'=>array(
-			    'skin'=>'o2k7',
-			    'skin_variant'=>'black')
-			))
+RTE::rich_text_box($name, 
+				$value = '', 
+				array('att'=>array('id'=>'editorId')),
+				'selector'=>'editorSelector',
+				'mode'=>'full',
+				'setup'=>array(
+					'skin'=>'o2k7',
+					'skin_variant'=>'black')
+				))
 </pre>
 
 ######To create initialization script:
@@ -43,38 +44,23 @@ _When using this function, you can create normal textareas using Laravel's form 
 
 <pre>
 RTE::initialize_script(array('selector'=>'rich1',
-			     'mode'=>'full',
-			     'setup'=>array(
-			         'skin'=>'o2k7',
-			         'skin_variant'=>'black')			
-			     ))
+						'mode'=>'full',
+						'setup'=>array(
+							'skin'=>'o2k7',
+							'skin_variant'=>'black')			
+						))
 </pre>
 
 ######LaraMCE settings:
 
-*Required*
-<pre>'id'        =>   'id of the control',</pre>
+<pre>'selector'  	=>   'a unique name that TinyMCE will use to select the textarea',</pre>
 
-*Required*
-<pre>'name'      =>   'name of the control',</pre>
+<pre>'mode'      	=>   'full/simple/custom',</pre>
 
-*Required*
-<pre>'selector'  =>   'a unique name that TinyMCE will use to select the textarea',</pre>
-
-*Required*
-<pre>'mode'      =>   'full/simple/custom',</pre>
-
-*Optional*
-<pre>'style'     =>   'standard css',</pre>
-
-*Optional*
-<pre>'rows'      =>   '5',</pre>
-
-*Optional*
-<pre>'cols'      =>   '80',</pre>
+<pre>'att'     		=>   array of html attributes,</pre>
                         
 *Refer to TinyMCE configuration documentation for correct setting names and values* - http://www.tinymce.com/wiki.php/Configuration                     
-<pre>'setup'     =>   array( 'TinyMCE Setting'=>'Value', 'Another TinyMCE Setting'=>'Value')</pre>
+<pre>'setup'     	=>   array( 'TinyMCE Setting'=>'Value', 'Another TinyMCE Setting'=>'Value')</pre>
 
 Current TinyMCE version is 3.5.6<br/>
 TinyMCE Homepage: http://www.tinymce.com/<br/>
