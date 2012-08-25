@@ -62,10 +62,10 @@
 <p><em>For the mode setting, use 'simple' to create a simple editor, 'full' to create an editor with all options enabled and 'custom' to create an editor with your own settings</em></p>
 
 <pre>
-RTE::rich_text_box(array('id'=&gt;'rt1',
-             'name'=&gt;'rt1',
-             'selector'=&gt;'rich1',
+RTE::rich_text_box('editorName', 'editorValue',array(
+             'selector'=&gt;'editorSelector',
              'mode'=&gt;'full',
+             'att'=&gt;'array('id'=&gt;'editorId'),
              'setup'=&gt;array(
                 'skin'=&gt;'o2k7',
                 'skin_variant'=&gt;'black')
@@ -77,7 +77,7 @@ RTE::rich_text_box(array('id'=&gt;'rt1',
 <p><em>Use this method if you want to create multiple editors on a single page or generate the script where you want.</em><br><em>When using this function, you can create normal textareas using Laravel's form builder, just remember to add the same selector id for the script as a class attribute to the textarea.</em></p>
 
 <pre>
-RTE::initialize_script(array('selector'=&gt;'rich1',
+RTE::initialize_script(array('selector'=&gt;'editorSelector',
                  'mode'=&gt;'full',
                  'setup'=&gt;array(
                      'skin'=&gt;'o2k7',
@@ -87,33 +87,11 @@ RTE::initialize_script(array('selector'=&gt;'rich1',
 
 <h6>LaraMCE settings:</h6>
 
-<p><em>Required</em></p>
-
-<pre>'id'        =&gt;   'id of the control',</pre>
-
-<p><em>Required</em></p>
-
-<pre>'name'      =&gt;   'name of the control',</pre>
-
-<p><em>Required</em></p>
-
 <pre>'selector'  =&gt;   'a unique name that TinyMCE will use to select the textarea',</pre>
 
 <p><em>Required</em></p>
 
 <pre>'mode'      =&gt;   'full/simple/custom',</pre>
-
-<p><em>Optional</em></p>
-
-<pre>'style'     =&gt;   'standard css',</pre>
-
-<p><em>Optional</em></p>
-
-<pre>'rows'      =&gt;   '5',</pre>
-
-<p><em>Optional</em></p>
-
-<pre>'cols'      =&gt;   '80',</pre>
                         
 
 <p><em>Refer to TinyMCE configuration documentation for correct setting names and values</em> - <a href="http://www.tinymce.com/wiki.php/Configuration">http://www.tinymce.com/wiki.php/Configuration</a>                     </p>
