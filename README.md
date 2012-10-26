@@ -13,7 +13,7 @@ LaraMCE allows you to generate rich text boxes based on TinyMCE for the excellen
 
 ######3. Add the following to the application.php config file in the 'aliases' array:
 
-<pre>'RTE'                 => 'Laramce\\rte',</pre>
+<pre>'RTE'                 => 'Laramce\\RTE',</pre>
 
 ######4. Publish the bundle assets to your public folder:
 
