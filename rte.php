@@ -58,8 +58,14 @@ class RTE
 	 */
 	protected static function add_setting($script, $key, $value)
 	{
-		if(is_bool($value)||is_int($value)){$return_value = $value;}else{$return_value='"'.$value.'"';};
-		return $script.','.$key.' : '.$return_value;
+		if ( is_bool( $value ) || is_int( $value ) ){
+			$return_value = $value;
+		} elseif( is_array($value) ){
+			$return_value = json_encode($value);
+		}else {
+			$return_value = '"' . $value . '"';
+		};
+		return $script . ',' . $key . ' : ' . $return_value;
 	}
 
 	/**
