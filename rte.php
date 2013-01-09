@@ -58,12 +58,21 @@ class RTE
 	 */
 	protected static function add_setting($script, $key, $value)
 	{
-		if ( is_bool( $value ) || is_int( $value ) ){
+		if ( is_int( $value ) ){
 			$return_value = $value;
 		} elseif( is_array($value) ){
 			$return_value = json_encode($value);
 		}else {
-			$return_value = '"' . $value . '"';
+			//allow booleans to be represented by their string values since the 
+			//javascript will need to interpret it as a boolean itself (php will just print 1 or nothing if echoed)
+			if ( is_bool( $value ) ){
+				$return_value = ($value)?'true':'false';
+			} else if ($value == 'true' || $value == 'false'){
+				$return_value = $value;
+			} else {
+				$return_value = '"' . $value . '"';
+			}
+
 		};
 		return $script . ',' . $key . ' : ' . $return_value;
 	}
